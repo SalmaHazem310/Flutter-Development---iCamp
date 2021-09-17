@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sprints/HorizontalContainers.dart';
+import 'package:sprints/VerticalContainers.dart';
+import 'package:sprints/getStarted.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -8,100 +11,113 @@ class Login extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: size.height,
-        child: Stack(
-          alignment: Alignment.center,
-          children: <Widget>[
-            SizedBox(height: 100),
-            Positioned(
-              top: 30,
-              child: Image.asset(
-                "assets/flutter_logo.jpg",
-                width: size.width * 0.5,
-              ),
+        child: Stack(alignment: Alignment.center, children: <Widget>[
+          SizedBox(height: 100),
+          Positioned(
+            top: 30,
+            child: Image.asset(
+              "assets/flutter_logo.jpg",
+              width: size.width * 0.5,
             ),
-            Positioned(
+          ),
+          Positioned(
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget> [
+                  children: <Widget>[
+                    TextField(
+                      decoration: InputDecoration(
+                          labelText: "Phone Number",
+                          labelStyle: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.grey)),
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                          labelText: "Password",
+                          labelStyle: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.grey)),
+                    ),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                      child: Column(
-                        children: <Widget>[
-                          TextField(
-                            decoration: InputDecoration(
-                              labelText: "Phone Number",
-                              labelStyle: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey
-                              )
+//            padding: EdgeInsets.symmetric(vertical: 20),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => VerticalContainers()));
+                        },
+                        child: Container(
+                          margin: EdgeInsets.all(20),
+                          padding: EdgeInsets.all(10),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              color: Colors.lightBlueAccent,
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Center(
+                            child: Text(
+                              "Log in",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
                             ),
                           ),
-                          TextField(
-                            decoration: InputDecoration(
-                                labelText: "Password",
-                                labelStyle: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey
-                                )
-                            ),
-                          ),
-                          SizedBox(height: 20),
-                          Material(
-                            borderRadius: BorderRadius.circular(5.0),
-                            color: Colors.lightBlue,
-                            child: GestureDetector(
-                              onTap: () {},
-                              child: Center(
-                                child: Text(
-                                  'Log in',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Montserrat'
-                                  ),
-
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 5.0),
-                          InkWell(
-                            child: Text('Forgot password? No yawa. Tap me',
-                            style: TextStyle(
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 5.0),
+                    InkWell(
+                      child: Text(
+                        'Forgot password? No yawa. Tap me',
+                        style: TextStyle(
+                            color: Colors.grey, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Container(
+//            padding: EdgeInsets.symmetric(vertical: 20),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => HorizontalContainers()));
+                        },
+                        child: Container(
+                          margin: EdgeInsets.all(20),
+                          padding: EdgeInsets.all(10),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
                               color: Colors.grey,
-                              fontWeight: FontWeight.bold
-
-                            ),),
-
-                          ),
-                          SizedBox(height: 20.0),
-                          Material(
-                            borderRadius: BorderRadius.circular(5.0),
-                            color: Colors.grey,
-                            child: GestureDetector(
-                              onTap: () {},
-                              child: Center(
-                                child: Text(
-                                  'No Account? Sign Up',
-                                  style: TextStyle(
-                                      color: Colors.black54,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Montserrat'
-                                  ),
-
-                                ),
-                              ),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Center(
+                            child: Text(
+                              "No account? Sign up",
+                              style:
+                              TextStyle(color: Colors.black54, fontSize: 15),
                             ),
                           ),
-                        ],
+                        ),
                       ),
-
-                      ),
+                    ),
                   ],
-
-                ))
-          ]
-        ),
-    ),);
+                ),
+              ),
+            ],
+          ))
+        ]),
+      ),
+    );
   }
 }
+//Navigator.of(context).push(MaterialPageRoute(builder: (context) => getStarted()));
+//child: GestureDetector(
+//                        onTap: () {
+//                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => getStarted()));
+//                        },
+//                        child: Center(
+//                          child: Text(
+//                            'Log in',
+//                            style: TextStyle(
+//                                color: Colors.white,
+//                                fontWeight: FontWeight.bold,
+//                                fontFamily: 'Montserrat'),
+//                          ),
+//                        ),
+//                      ),
