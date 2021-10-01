@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sprints/HorizontalContainers.dart';
-import 'package:sprints/VerticalContainers.dart';
-import 'package:sprints/getStarted.dart';
+import 'package:sprints/showing_info.dart';
 
 class Login extends StatelessWidget {
+  TextEditingController _phone_number = new TextEditingController();
+  TextEditingController _password = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -17,7 +19,7 @@ class Login extends StatelessWidget {
             top: 30,
             child: Image.asset(
               "assets/flutter_logo.jpg",
-              width: size.width * 0.5,
+              width: size.width * 0.4,
             ),
           ),
           Positioned(
@@ -29,12 +31,14 @@ class Login extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     TextField(
+                      controller: _phone_number,
                       decoration: InputDecoration(
                           labelText: "Phone Number",
                           labelStyle: TextStyle(
                               fontWeight: FontWeight.bold, color: Colors.grey)),
                     ),
                     TextField(
+                      controller: _password,
                       decoration: InputDecoration(
                           labelText: "Password",
                           labelStyle: TextStyle(
@@ -45,7 +49,7 @@ class Login extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => VerticalContainers()));
+                              builder: (context) => ShowingInfo(_phone_number.text, _password.text)));
                         },
                         child: Container(
                           margin: EdgeInsets.all(20),
@@ -106,18 +110,4 @@ class Login extends StatelessWidget {
     );
   }
 }
-//Navigator.of(context).push(MaterialPageRoute(builder: (context) => getStarted()));
-//child: GestureDetector(
-//                        onTap: () {
-//                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => getStarted()));
-//                        },
-//                        child: Center(
-//                          child: Text(
-//                            'Log in',
-//                            style: TextStyle(
-//                                color: Colors.white,
-//                                fontWeight: FontWeight.bold,
-//                                fontFamily: 'Montserrat'),
-//                          ),
-//                        ),
-//                      ),
+

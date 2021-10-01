@@ -1,15 +1,16 @@
-# Flutter-Development---iCamp
-The application will open on GetStarted screen:to go through all screens
-Press GET STARTED
-Press Log in: for vertical containers
-Press No account? Sign up: for horizontal containers
-## Task 1
-### Login Page
-![image](https://user-images.githubusercontent.com/43723626/133765913-65e1107d-620b-4a7e-84d7-0e44a98b08f2.png)
-## Task 2
-### Get Started Page
-![image](https://user-images.githubusercontent.com/43723626/133765795-8fbdf659-2382-4a80-9dcd-15d5dd9dece3.png)
-### Vertical Containers
-![image](https://user-images.githubusercontent.com/43723626/133778076-f64e588b-1b60-4607-9a20-d4d8617ae789.png)
-### Horizontal Containers
-![image](https://user-images.githubusercontent.com/43723626/133780478-33f73d9d-90c3-4554-aebd-c93492349b2a.png)
+# sprints
+
+A new Flutter application.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
