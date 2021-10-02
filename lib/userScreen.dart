@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sprints/User.dart';
+import 'package:sprints/settingsScreen.dart';
+import 'package:sprints/startPage.dart';
 import 'package:sprints/userData.dart';
 import 'package:sprints/userService.dart';
+
+import 'Login.dart';
+import 'getStarted.dart';
 
 class UserScereen extends StatefulWidget {
   @override
@@ -10,64 +14,43 @@ class UserScereen extends StatefulWidget {
 }
 
 class _UserScereenState extends State<UserScereen> {
-  List<User> usersList = [];
-  bool isLoading = true;
+  int currentIndex = 0;
+  List<Widget> pages = [
+    StartPage(),
+    SettingsScreen(),
+    Login()
+  ];
 
-  getUserList() async
-  {
-    usersList = await UserService().getUser();
-    isLoading = false;
+
+
+  void _onItemTapped(int index){
     setState(() {
-
+      currentIndex = index;
     });
   }
-//  saveData() async
-//  {
-//    SharedPreferences preferences = await SharedPreferences.getInstance();
-//    for (var i in usersList) {
-//      preferences.setString("Data", usersList[i].phone);
-//    }
-//
-//
-//  }
-  @override
-  void initState() {
-    super.initState();
-    getUserList();
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: isLoading
-      ? Center (
-        child: CircularProgressIndicator(),
-      )
-      : ListView.builder(
-          itemCount: usersList.length,
-          itemBuilder: (BuildContext context, int index) {
-            saveIndex() async {
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              prefs.setInt("index", index);
-            }
-            saveIndex();
-            return ListTile(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                    builder: (context) => UserData(),
-                ),
-                );
-              },
-              title: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text("${usersList[index].name}"),
-              ),
-              trailing: Icon(Icons.people),
-            );
-            },
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: _onItemTapped,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
       ),
-    );
+      body: pages[currentIndex]);
   }
 }

@@ -1,55 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sprints/userService.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:sprints/utils.dart';
 
 import 'User.dart';
 
 class UserData extends StatefulWidget {
+  User user;
+  UserData({this.user});
+
   @override
   _UserDataState createState() => _UserDataState();
 }
 
 class _UserDataState extends State<UserData> {
-  List<User> usersList = [];
-  bool isLoading = true;
-  int index = 0;
-
-  getUserList() async {
-    usersList = await UserService().getUser();
-    isLoading = false;
-    setState(() {});
-  }
-  getIndex() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    index = prefs.getInt("index")?? 0;
-    setState(() {
-
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getIndex();
-    print(index);
-
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: isLoading
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : ListView(
-        padding: const EdgeInsets.all(8),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text("${index}"),
-//          Text("${usersList[index].email}, ${usersList[index].phone}"),
-        ]
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text("${widget.user.name}"),
         ),
+        InkWell(onTap: () {
+          launchURL("tel:${widget.user.phone}");
+        },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("${widget.user.phone}"),
+          ),
+        ),
+        InkWell(onTap: () {
+          launchURL("mailto:${widget.user.email}?subject=newSubject &body=New Email");
+        },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("${widget.user.email}"),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text("${widget.user.id}"),
+        ),
+
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text("${widget.user.username}"),
+        ),
+        InkWell( onTap: (){
+          launchURL("http://${widget.user.website}");
+        },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("${widget.user.website}"),
+          ),
+        ),
+      ],
+      ),
       );
     }
   }
